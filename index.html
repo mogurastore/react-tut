@@ -16,13 +16,41 @@
 
     <script type="text/babel">
       const App = () => {
-        const handleClick = text => {
-          alert(text);
+        const [input, setInput] = React.useState("a");
+        const [select, setSelect] = React.useState("option1");
+        const [textarea, setTextarea] = React.useState("b");
+
+        const handleSubmit = e => {
+          e.preventDefault();
+          console.log({ input, select, textarea });
         };
 
         return (
           <div>
-            <button onClick={() => handleClick("hello")}>click</button>
+            <form onSubmit={handleSubmit}>
+              <input
+                value={input}
+                onChange={e => {
+                  setInput(e.target.value);
+                }}
+              />
+              <select
+                value={select}
+                onChange={e => {
+                  setSelect(e.target.value);
+                }}
+              >
+                <option value="option1">option1</option>
+                <option value="option2">option2</option>
+              </select>
+              <textarea
+                value={textarea}
+                onChange={e => {
+                  setTextarea(e.target.value);
+                }}
+              ></textarea>
+              <button>ok</button>
+            </form>
           </div>
         );
       };
