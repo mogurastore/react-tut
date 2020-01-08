@@ -15,7 +15,17 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
-      const App = () => <h3>Hello react!!!</h3>;
+      const App = () => {
+        const handleClick = text => {
+          alert(text);
+        };
+
+        return (
+          <div>
+            <button onClick={() => handleClick("hello")}>click</button>
+          </div>
+        );
+      };
 
       const rootElement = document.getElementById("hello");
       ReactDOM.render(<App />, rootElement);
