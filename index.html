@@ -15,13 +15,23 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
-      const App = () => {
-        const [color, setColor] = React.useState("#000");
+      const Child = ({ text }) => <p>child {text}</p>;
 
+      const Wrap = ({ children }) => (
+        <div>
+          <h3>wrap</h3>
+          {children}
+        </div>
+      );
+
+      const App = () => {
         return (
           <div>
-            <input value={color} onChange={e => setColor(e.target.value)} />
-            <p style={{ fontSize: 30, color }}>{color}</p>
+            <Wrap>
+              <h4>wrap children</h4>
+            </Wrap>
+            <Child text="foo" />
+            <Child text="bar" />
           </div>
         );
       };
