@@ -15,23 +15,20 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
-      const Child = ({ text }) => <p>child {text}</p>;
-
-      const Wrap = ({ children }) => (
-        <div>
-          <h3>wrap</h3>
-          {children}
-        </div>
-      );
-
       const App = () => {
+        const [loading, setLoading] = React.useState(true);
+        const dom = loading ? <p>loading</p> : <h3>done</h3>;
+
         return (
           <div>
-            <Wrap>
-              <h4>wrap children</h4>
-            </Wrap>
-            <Child text="foo" />
-            <Child text="bar" />
+            <button
+              onClick={() => {
+                setLoading(current => !current);
+              }}
+            >
+              toggle
+            </button>
+            {dom}
           </div>
         );
       };
