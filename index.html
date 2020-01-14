@@ -15,16 +15,39 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
+      const Sub = () => {
+        React.useEffect(() => {
+          alert("create");
+
+          return () => {
+            alert("destroy");
+          };
+        }, []);
+        return <p>sub</p>;
+      };
+
+      const Up = ({ flag }) => {
+        React.useEffect(() => {
+          alert("update");
+        }, [flag]);
+
+        return <p>up</p>;
+      };
+
       const App = () => {
-        const list = [1, 2, 3, 3];
+        const [flag, setFlag] = React.useState(false);
 
         return (
           <div>
-            <ul>
-              {list.map(item => {
-                return <li key={item}>item{item}</li>;
-              })}
-            </ul>
+            <button
+              onClick={() => {
+                setFlag(current => !current);
+              }}
+            >
+              toggle
+            </button>
+            {flag ? <Sub /> : null}
+            <Up flag={flag} />
           </div>
         );
       };
